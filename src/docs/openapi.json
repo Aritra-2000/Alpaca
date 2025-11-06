@@ -1,0 +1,70 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Alpaca Routing API",
+    "version": "1.0.0",
+    "description": "REST API wrapper exposing selected Alpaca endpoints."
+  },
+  "servers": [{ "url": "http://localhost:3000" }],
+  "paths": {
+    "/health": {
+      "get": {
+        "summary": "Health check",
+        "responses": {
+          "200": { "description": "OK" }
+        }
+      }
+    },
+    "/api/account": {
+      "get": {
+        "summary": "Get account info",
+        "responses": {
+          "200": { "description": "Account object" }
+        }
+      }
+    },
+    "/api/positions": {
+      "get": {
+        "summary": "List open positions",
+        "responses": {
+          "200": { "description": "Array of positions" }
+        }
+      }
+    },
+    "/api/trades": {
+      "get": {
+        "summary": "List account trade activities",
+        "parameters": [
+          {
+            "name": "types",
+            "in": "query",
+            "required": false,
+            "schema": { "type": "string", "example": "FILL" },
+            "description": "Comma-separated activity types"
+          }
+        ],
+        "responses": {
+          "200": { "description": "Array of activities" }
+        }
+      }
+    },
+    "/api/quotes/{symbol}": {
+      "get": {
+        "summary": "Get latest quote for a symbol",
+        "parameters": [
+          {
+            "name": "symbol",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "example": "AAPL" }
+          }
+        ],
+        "responses": {
+          "200": { "description": "Latest quote" }
+        }
+      }
+    }
+  }
+}
+
+
